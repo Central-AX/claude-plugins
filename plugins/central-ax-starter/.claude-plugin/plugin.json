@@ -1,0 +1,12 @@
+{
+  "name": "central-ax-starter",
+  "displayName": "Central AX Starter",
+  "description": "Central AX推奨のClaude Code初期設定ガイドと、メール送信前QA（email-check skill + email-reviewer agent）のセット。",
+  "version": "0.4.0",
+  "author": {
+    "name": "Central AX",
+    "url": "https://central-ax.co.jp"
+  },
+  "homepage": "https://central-ax.co.jp",
+  "keywords": ["setup", "onboarding", "email", "japanese", "ax"]
+}

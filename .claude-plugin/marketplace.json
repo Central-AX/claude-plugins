@@ -1,0 +1,22 @@
+{
+  "name": "central-ax",
+  "owner": {
+    "name": "Central AX",
+    "url": "https://central-ax.co.jp"
+  },
+  "metadata": {
+    "description": "Central AXが提供するClaude Code公式プラグイン集。AI研修受講者・AX支援先向けに、推奨初期設定と業務skillを配布する。",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "central-ax-starter",
+      "source": "./plugins/central-ax-starter",
+      "description": "Central AX推奨のClaude Code初期設定ガイドと、メール送信前QA（email-check skill + email-reviewer agent）のセット。研修Day1の環境構築をこれ1つで再現する。",
+      "version": "0.4.0",
+      "author": { "name": "Central AX" },
+      "category": "productivity",
+      "keywords": ["setup", "onboarding", "email", "japanese", "ax"]
+    }
+  ]
+}
