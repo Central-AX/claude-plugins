@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0 (2026-07-15)
+
+- メルカリの社内数百人へのClaude Code配布事例（2026-07公開のSpeaker Deck）を反映
+  - ステップ2のdenyテンプレに `Read(./.env.*)` / `Edit(./.env.*)` を追加、SSH鍵を扱うPCはユーザー設定に `Read(**/.ssh/**)` を足す旨を注記
+  - ステップ3の安全重視セットに `permissions.disableBypassPermissionsMode: "disable"`（確認スキップモードの封印）を追加
+  - ステップ3に「非エンジニア向け強化オプション」（`Bash(curl:*)` / `Bash(wget:*)` のdeny）を追加し、職種別に出し分け。引数条件付き許可の脆弱性とWebFetchへの一本化を注記
+  - referencesに新セクション「組織展開ガイド（複数人に配るとき）」を追加（managed-settings.jsonのOS別配置パス、エンジニア/非エンジニアの安全レベル出し分け、サンドボックス設定例とWindows非対応の注記、出典）
+
 ## 0.4.0 (2026-06-12)
 
 - first-setupを2シナリオ×2周のempiricalテストで検証・改善（最終: 両シナリオ精度100%）

@@ -67,14 +67,17 @@
     "deny": [
       "Read(./secrets/**)",
       "Read(./.env)",
+      "Read(./.env.*)",
       "Edit(./secrets/**)",
-      "Edit(./.env)"
+      "Edit(./.env)",
+      "Edit(./.env.*)"
     ]
   }
 }
 ```
 
 選ばれた方式に合わせてパスを調整する（secrets/のみなら.env行は不要）。既存のallow/denyエントリは消さず温存する。
+SSH鍵を扱うPCでは、ユーザー設定（`~/.claude/settings.json`）に `"Read(**/.ssh/**)"` を追加する（プロジェクト単位のsettings.jsonでは他PJに及ばないため）。
 
 **denyの限界（ユーザーにも一言伝える）**: このdenyはRead/Editツールにだけ効く。Bash/PowerShell等のシェルコマンド経由の読み取りまでは止まらないので、「絶対に読めない」保証ではなく事故防止の第一層と説明する。gitを使う場合は `.gitignore` への追加も必須（git未使用なら.gitignoreは不要）。
 
@@ -88,6 +91,7 @@
 ```json
 {
   "permissions": {
+    "disableBypassPermissionsMode": "disable",
     "deny": [
       "Bash(rm -rf:*)",
       "Bash(git push --force:*)",
@@ -99,6 +103,23 @@
 ```
 
 誤操作と「うっかり承認」の事故防止が目的。業務でこれらのコマンドが必要なユーザー（エンジニア等）には、ブロックされる場面と外し方（該当行を消す）を一言添える。「デフォルトのまま」を選んだ場合はsettings.jsonに手を入れない（既存エントリ温存のみ）。「読み取り系だけ許可」は Read/Glob/Grep 相当のallowを追加する。
+
+`disableBypassPermissionsMode: "disable"` は確認スキップモード（`--dangerously-skip-permissions`等のbypassPermissionsモード）そのものを封じる設定。AIが手を動かす前に必ず人間が確認する状態を強制し、この行を自分で消さない限り本人も解除できない。安全重視セットを選んだ場合は既定で入れる。
+
+### 非エンジニア向け強化オプション（Bash経由のネットワークアクセス遮断）
+
+```json
+{
+  "permissions": {
+    "deny": [
+      "Bash(curl:*)",
+      "Bash(wget:*)"
+    ]
+  }
+}
+```
+
+経営者・経理事務・営業マーケの職種には、安全重視セットに加えてこの強化を推奨する。エンジニアはcurl等が業務で必要な場面があるため、外してよいか本人に確認してから入れる。「curlを特定URL宛だけ許可」のような引数条件付き許可（例: `Bash(curl http://github.com/ *)`）はオプションの位置・別プロトコル・リダイレクト・変数展開で容易に回避でき、公式ドキュメントも「壊れやすい」と明記している。Web取得はcurl/wgetを丸ごと止め、行き先をドメイン単位で許可制にできる `WebFetch(domain:example.com)` に一本化するのが公式推奨。
 
 ## ステップ4: セキュリティルール（CLAUDE.md追記）
 
@@ -128,3 +149,42 @@
 
 - **今後の運用**
   - ルールが増えたら都度CLAUDE.mdに追記していく（推奨） / 今日はここまで
+
+## 組織展開ガイド（複数人に配るとき）
+
+個人のsettings.jsonは本人が書き換えられるため、複数人に配る場合は本人が上書きできない設定が要る場面がある。以下はメルカリの社内数百人配布事例（出典は末尾）を踏まえた考え方。
+
+### (a) managed-settings.json — 本人に変更できない設定
+
+`disableBypassPermissionsMode` 等の組織方針は `managed-settings.json` に置くとユーザー・プロジェクト設定より優先され、本人には上書きできない。
+
+配置パス（OS別）:
+- macOS: `/Library/Application Support/ClaudeCode/managed-settings.json`
+- Linux / WSL: `/etc/claude-code/managed-settings.json`
+- Windows: `C:\Program Files\ClaudeCode\managed-settings.json`
+
+MDM（Jamf/Intune等）があれば配布・強制まで自動化できる。無ければファイル共有で各PCの上記パスに同じ内容を置いても、本人が触れない設定という方向は同じ。
+
+### (b) エンジニア/非エンジニアで安全レベルを出し分ける
+
+メルカリ方式は「エンジニアはカスタマイズ余地あり、非エンジニアは最も安全な初期設定を強制」の2段構え。first-setupの職種別分岐表と同じ思想なので、非エンジニア向けにはステップ3の「非エンジニア向け強化オプション」をmanaged-settings.json側で強制するとよい。
+
+### (c) サンドボックス（macOS/Linux/WSL2のみ、ネイティブWindows非対応）
+
+```json
+{
+  "sandbox": {
+    "enabled": true,
+    "network": { "allowedDomains": ["github.com"] }
+  }
+}
+```
+
+OSレベルで作業フォルダ外・許可外ドメインを遮断する最も強い層。ネイティブWindowsでは動かないため、Windows主体の職場ではステップ2〜3のdenyを厚くする方針で代替する。
+
+### 出典
+- メルカリ事例（Speaker Deck）: https://speakerdeck.com/hi120ki/claude-code-organization-settings
+- 解説記事（X）: https://x.com/hermes_code/status/2076895490957066612
+- 公式: https://code.claude.com/docs/en/permissions
+- 公式: https://code.claude.com/docs/en/settings
+- 公式: https://code.claude.com/docs/en/sandboxing
