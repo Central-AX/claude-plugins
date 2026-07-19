@@ -9,6 +9,7 @@ Central AX推奨のClaude Code初期セットアップを1コマンドで配布�
 | skill | `first-setup` | CLAUDE.md作成・機密情報の隔離・permissions・外部skill安全確認を対話形式でセットアップ |
 | skill | `email-check` | 営業・顧客向けメールの送信前QA（C/W/S重大度制チェックリスト） |
 | agent | `email-reviewer` | email-checkから委譲される独立レビュアー。書き手に忖度しない検査役 |
+| skill | `attendance` | 「出勤」「退勤」の一言で月別CSVに打刻を記録し、実働時間の計算と月次集計を行う |
 
 ## 使い方
 
@@ -16,6 +17,7 @@ Central AX推奨のClaude Code初期セットアップを1コマンドで配布�
 
 - 「初期設定して」 → first-setupが起動
 - 「このメール送信前にチェックして」 → email-checkが起動
+- 「出勤」「退勤」「勤怠確認」 → attendanceが起動
 
 ## バージョン
 
