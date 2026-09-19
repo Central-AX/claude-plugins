@@ -17,7 +17,7 @@ Claude Code内で以下を実行:
 
 | プラグイン | 説明 |
 |-----------|------|
-| `central-ax-starter` | 推奨初期設定ガイド（first-setup）＋メール送信前QA（email-check + email-reviewer） |
+| `central-ax-starter` | 推奨初期設定ガイド（first-setup）＋メール送信前QA（email-check + email-reviewer）＋勤怠打刻（attendance） |
 
 ## 構成
 
@@ -32,9 +32,12 @@ central-ax-plugins/
         │   ├── first-setup/
         │   │   ├── SKILL.md
         │   │   └── references/setup-guide.md   # 質問セット・テンプレート集
-        │   └── email-check/
+        │   ├── email-check/
+        │   │   ├── SKILL.md
+        │   │   └── references/checklist.md     # C/W/Sチェックリスト完全版
+        │   └── attendance/
         │       ├── SKILL.md
-        │       └── references/checklist.md     # C/W/Sチェックリスト完全版
+        │       └── references/attendance-guide.md   # CSV列定義・集計ルール・エッジケース
         └── agents/
             └── email-reviewer.md
 ```

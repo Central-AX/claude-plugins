@@ -12,11 +12,11 @@
     {
       "name": "central-ax-starter",
       "source": "./plugins/central-ax-starter",
-      "description": "Central AX推奨のClaude Code初期設定ガイドと、メール送信前QA（email-check skill + email-reviewer agent）のセット。研修Day1の環境構築をこれ1つで再現する。",
-      "version": "0.4.0",
+      "description": "Central AX推奨のClaude Code初期設定ガイド、メール送信前QA（email-check skill + email-reviewer agent）、勤怠打刻（attendance skill）のセット。研修Day1の環境構築をこれ1つで再現する。",
+      "version": "0.6.0",
       "author": { "name": "Central AX" },
       "category": "productivity",
-      "keywords": ["setup", "onboarding", "email", "japanese", "ax"]
+      "keywords": ["setup", "onboarding", "email", "attendance", "japanese", "ax"]
     }
   ]
 }
