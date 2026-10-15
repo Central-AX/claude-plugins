@@ -13,10 +13,19 @@
       "name": "central-ax-starter",
       "source": "./plugins/central-ax-starter",
       "description": "Central AX推奨のClaude Code初期設定ガイドと、メール送信前QA（email-check skill + email-reviewer agent）のセット。研修Day1の環境構築をこれ1つで再現する。",
-      "version": "0.4.0",
+      "version": "0.5.0",
       "author": { "name": "Central AX" },
       "category": "productivity",
       "keywords": ["setup", "onboarding", "email", "japanese", "ax"]
+    },
+    {
+      "name": "central-ax-zeirishi",
+      "source": "./plugins/central-ax-zeirishi",
+      "description": "税理士事務所向けのAI安全管理と業務skillのセット。顧問先情報の入力前チェック、事務所AI利用規程・ツール管理台帳づくり、税務成果物の独立検査（tax-output-check + tax-reviewer）、顧問先への回答文案・仕訳候補CSV・面談記録の作成。",
+      "version": "0.1.0",
+      "author": { "name": "Central AX" },
+      "category": "productivity",
+      "keywords": ["tax", "zeirishi", "accounting", "japanese", "security", "ax"]
     }
   ]
 }
