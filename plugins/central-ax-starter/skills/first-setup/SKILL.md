@@ -1,11 +1,22 @@
 ---
 name: first-setup
-description: Claude Codeを業務で使い始めるための初期設定（CLAUDE.md作成・機密情報の隔離・permissions・外部skill導入時の安全確認）を、選択式の質問だけで一通り整えるときに使用する。ユーザーが「初期設定して」「セットアップして」「Claude Codeを始めたい」「最初に何を設定すればいい」と依頼したときに起動する。新しい作業フォルダにCLAUDE.mdが無いことに気づいたときも積極的に提案する。
+description: Claude Code（またはCodex）を業務で使い始めるための初期設定（CLAUDE.md／AGENTS.md作成・機密情報の隔離・permissions・外部skill導入時の安全確認）を、選択式の質問だけで一通り整えるときに使用する。ユーザーが「初期設定して」「セットアップして」「Claude Codeを始めたい」「Codexを始めたい」「Codexの初期設定して」「最初に何を設定すればいい」と依頼したときに起動する。新しい作業フォルダにCLAUDE.md（CodexならAGENTS.md）が無いことに気づいたときも積極的に提案する。
 ---
 
 # Central AX流 Claude Code初期設定
 
 業務利用に必要な初期設定を、ユーザーがタイプせず選択するだけで完了させる。
+
+## Codexで実行されている場合
+
+このskillをCodex（OpenAIのCodex CLI・ChatGPTデスクトップアプリ）で実行しているときは、最初に `references/codex-setup-guide.md` を読み、以下の原則とフローを次のように読み替えて進める。質問の中身・職種別分岐表・テンプレートの文面は `references/setup-guide.md` をそのまま使う。
+
+- CLAUDE.md → `AGENTS.md`、`.claude/settings.json` → `.codex/config.toml`（TOML）
+- permissions.deny → 権限プロファイルの `deny`（ベータ機能。効く範囲と注意点はcodex-setup-guide参照）
+- AskUserQuestion → 選択式の質問ツールが使えなければ、番号付き選択肢をテキストで出して番号で答えてもらう
+- Codexの設定値は推測で書かず、codex-setup-guideに載っているものだけを使う
+
+Claude Codeで実行しているときはこの節を読み飛ばし、以下をそのまま実行する。
 
 ## 原則
 
