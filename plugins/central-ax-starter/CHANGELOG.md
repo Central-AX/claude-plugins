@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.6.0 (2026-10-15)
+
+- OpenAI Codexに対応（Claude Codeでの挙動は変更なし）
+  - Codexでは `codex plugin marketplace add Central-AX/claude-plugins` → `codex plugin add central-ax-starter@central-ax` で導入できる旨をルートREADMEに追記
+  - email-check: email-reviewerエージェントが無い環境（Codex）では、`agents/email-reviewer.md` の本文を指示にしたサブエージェントを都度起動して委譲するよう分岐を追加。サブエージェントが使えない場合は自己チェックである旨を判定に明記するフォールバックを追加
+  - first-setup: Codexで実行されたときの読み替え（CLAUDE.md→AGENTS.md、settings.json→`.codex/config.toml`、AskUserQuestion→番号付き選択肢）を追加。設定テンプレート・注意点は新設の `references/codex-setup-guide.md` に集約（権限プロファイルによる機密の読み取りブロック、rulesによる破壊的コマンドの禁止、requirements.tomlによる組織展開。いずれも公式ドキュメントで確認）
+  - descriptionに「Codexを始めたい」等のトリガーを追加
+- marketplace.jsonのプラグインversionがplugin.jsonとずれていた（0.4.0のまま）のを0.6.0に揃えた
+
 ## 0.5.0 (2026-07-15)
 
 - メルカリの社内数百人へのClaude Code配布事例（2026-07公開のSpeaker Deck）を反映
