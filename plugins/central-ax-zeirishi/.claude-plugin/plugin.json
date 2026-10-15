@@ -1,0 +1,12 @@
+{
+  "name": "central-ax-zeirishi",
+  "displayName": "Central AX 税理士事務所パック",
+  "description": "税理士事務所向けのAI安全管理と業務skillのセット。顧問先情報の入力前チェック（input-check）、事務所AI利用規程・ツール管理台帳づくり（office-ai-policy）、税務成果物の独立検査（tax-output-check + tax-reviewer）、顧問先への回答文案・仕訳候補CSV・面談記録の作成。",
+  "version": "0.1.0",
+  "author": {
+    "name": "Central AX",
+    "url": "https://central-ax.co.jp"
+  },
+  "homepage": "https://central-ax.co.jp",
+  "keywords": ["tax", "zeirishi", "accounting", "japanese", "security", "ax"]
+}
